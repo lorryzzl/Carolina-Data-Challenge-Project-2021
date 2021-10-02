@@ -1,0 +1,312 @@
+---
+title: "CDC"
+author: "Lorry"
+date: "9/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## R Markdown
+
+# Import the dataset: "mobile_app_user_dataset_1.csv"
+```{r}
+dataset<-read.csv("mobile_app_user_dataset_1.csv")
+#head(dataset)
+```
+
+# Clean the dataset.
+```{r}
+dataset_select1<-dataset %>% filter(Response.Status == 1)
+dataset_selected<-dataset_select1 %>% select(ID, Q4, Q8_1, Q8_2, Q8_3, Q8_4, Q8_5, Q8_7, Q8_8, Q8_9, Q9_1, Q9_2, Q9_3, Q9_4, Q9_5, Q9_6, Q9_7, Q9_8, Q9_9, Q9_10, Q9_11, Q9_12, Q10_1,  Q10_2, Q10_3, Q10_4, Q10_5, Q10_6, Q10_7, Q10_8, Q10_9, Q10_10, Q10_11, Q10_12, Q10_13, Q10_14, Q11_1, Q11_2, Q11_3, Q11_4, Q11_5, Q11_6, Q11_7, Q11_8, Q11_9, Q11_11, Q11_12, Q14_1, Q14_2, Q14_3, Q14_4, Q14_5, Q14_6, Q14_7, Q14_8, Q14_9, Q14_10, Q14_11, Q14_12, Q14_13, Q14_15, Q20)
+#head(dataset_selected)
+```
+
+# Q8:How do you find apps
+```{r}
+country<-c("Australia", "Brazil", "Canada", "China", "France", "Germany", "India", "Italy", "Japan", "Mexico", "Republic of Korean", "Russian Federation", "Spain", "United Kingdom", "United States")
+q8_1_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q8_1']==1))))/(length(which((dataset_selected[,'Q20']==15)))))));
+#head(q8_1_data)
+library(ggplot2)
+ggplot(q8_1_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q8_1: Compare Different Apps to Choose the Best One")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q8_2_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q8_2']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q8_2_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q8_2: Download the first app on the list presented")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q8_3_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q8_3']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q8_3_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q8_3: Download the apps featured on the front page of app store")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q8_4_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q8_4']==1))))/(length(which((dataset_selected[,'Q20']==15)))))));
+ggplot(q8_4_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q8_4: Look at the Top Downloads Chart")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q8_5_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q8_5']==1))))/(length(which((dataset_selected[,'Q20']==15)))))));
+ggplot(q8_5_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q8_5: Browse Randomly for Apps")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q8_7_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q8_7']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q8_7_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q8_7: Search the App Store Using Key Words")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q8_8_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q8_8']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q8_8_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q8_8: Visit Websites that Review Apps")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q8_9_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q8_9']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q8_9_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q8_9: Use Search Engines")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+# Q9:What do you consider when you choose apps to download
+```{r}
+q9_1_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_1']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_1_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_1: Reviews by Other Users")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_2_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_2']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_2_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_2: Name of App")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_3_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_3']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_3_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_3: Number of users who have downloaded the app")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_4_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_4']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_4_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_4: Attractiveness of Icon")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_5_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_5']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_5_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_5: Description of the app")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_6_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_6']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_6_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_6: Features")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_7_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_7']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_7_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_7: Number of People Who Rated the App")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_8_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_8']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_8_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_8: Price")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_9_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_9']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_9_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_9: Star Rating")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_10_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_10']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_10_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_10: Size of App")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_11_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_11']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_11_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_11: Screen Shots")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+q9_12_data<-data.frame(country, percentage=c(((length(which((dataset_selected[,'Q20']==1) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==1))))), ((length(which((dataset_selected[,'Q20']==2) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==2))))), ((length(which((dataset_selected[,'Q20']==3) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==3))))), ((length(which((dataset_selected[,'Q20']==4) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==4))))), ((length(which((dataset_selected[,'Q20']==5) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==5))))), ((length(which((dataset_selected[,'Q20']==6) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==6))))), ((length(which((dataset_selected[,'Q20']==7) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==7))))), ((length(which((dataset_selected[,'Q20']==8) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==8))))), ((length(which((dataset_selected[,'Q20']==9) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==9))))), ((length(which((dataset_selected[,'Q20']==10) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==10))))), ((length(which((dataset_selected[,'Q20']==11) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==11))))), ((length(which((dataset_selected[,'Q20']==12) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==12))))), ((length(which((dataset_selected[,'Q20']==13) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==13))))), ((length(which((dataset_selected[,'Q20']==14) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==14))))), ((length(which((dataset_selected[,'Q20']==15) & (dataset_selected[,'Q9_12']==1))))/(length(which((dataset_selected[,'Q20']==15)))))))
+ggplot(q9_12_data,aes(country,percentage),)+geom_bar(stat="identity",fill="steelblue")+labs(x="Countries", y="Selection Percentage(%)")+ggtitle("Q9_12: Who Developed the App")+theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+```{r}
+for(i in 1:nrow(dataset_selected)){
+  if(dataset_selected[i,"Q8_1"] == 1) dataset_selected[i,"Q8_Combined"] = 1
+  else if(dataset_selected[i,"Q8_2"] == 1) dataset_selected[i,"Q8_Combined"] = 2
+  else if(dataset_selected[i,"Q8_3"] == 1) dataset_selected[i,"Q8_Combined"] = 3
+  else if(dataset_selected[i,"Q8_4"] == 1) dataset_selected[i,"Q8_Combined"] = 4
+  else if(dataset_selected[i,"Q8_5"] == 1) dataset_selected[i,"Q8_Combined"] = 5
+  else if(dataset_selected[i,"Q8_7"] == 1) dataset_selected[i,"Q8_Combined"] = 7
+  else if(dataset_selected[i,"Q8_8"] == 1) dataset_selected[i,"Q8_Combined"] = 8
+  else if(dataset_selected[i,"Q8_9"] == 1) dataset_selected[i,"Q8_Combined"] = 9
+}
+
+dataset_selected_q8<-filter(dataset_selected, Q8_Combined != 0)
+ggplot(data = dataset_selected_q8) +
+  geom_bar(aes(x = Q20, fill = as.factor(Q8_Combined)), position = "fill") +
+  labs(x = "Country", fill = "") +
+  ggtitle("Factors when choosing apps in different countries") +
+  theme(plot.margin = unit(c(1,1,1,1), "cm")) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1), legend.position="top", legend.key.size = unit(5, 'mm'), legend.text = element_text(size=5.5)) +
+  scale_x_discrete(labels = c('Australia','Mexico','ROK','Russian Federarion','Spain','UK','USA','Other','Brazil','Canada','China','France','Germany','India','Italy','Japan')) +
+  scale_fill_discrete(labels = c('compare pps.','Download the first app that I see.','Look for apps that are featured on the front page.','Look at the top downloads chart.','Browse randomly for apps.','Search the app store using keywords.','Visit websites that review apps.',' Use search engines'))
+```
+
+# Compare Responses in Q8
+```{r}
+q8_1 = 0
+q8_2 = 0
+q8_3 = 0
+q8_4 = 0
+q8_5 = 0
+q8_7 = 0
+q8_8 = 0
+q8_9 = 0
+
+for(i in 1:nrow(dataset_selected)){
+  if(dataset_selected[i,"Q8_1"] == 1) q8_1 = q8_1 + 1
+  else if(dataset_selected[i,"Q8_2"] == 1) q8_2 = q8_2 + 1
+  else if(dataset_selected[i,"Q8_3"] == 1) q8_3 = q8_3 + 1
+  else if(dataset_selected[i,"Q8_4"] == 1) q8_4 = q8_4 + 1
+  else if(dataset_selected[i,"Q8_5"] == 1) q8_5 = q8_5 + 1
+  else if(dataset_selected[i,"Q8_7"] == 1) q8_7 = q8_7 + 1
+  else if(dataset_selected[i,"Q8_8"] == 1) q8_8 = q8_8 + 1
+  else if(dataset_selected[i,"Q8_9"] == 1) q8_9 = q8_9 + 1
+}
+
+data_q8 = data.frame(group = c("I compare several apps.", "I download the first app that I see.", "I look for apps that are featured on the front page", "I look at the top downloads chart.", "I browse randomly for apps.", "I search the app store using keywords.", "I visit websites that review apps.", "I use search engines"), value = c(q8_1, q8_2, q8_3, q8_4, q8_5, q8_7, q8_8, q8_9))
+percentlabels8<- round(100*data_q8$value/sum(data_q8$value), 1)
+pielabels8<- paste(percentlabels8, "%", sep="")
+par(mar=c(0,0,2,2))
+palette8 <- rainbow(15)
+pie(data_q8$value, main="How do you find apps?", labels=pielabels8, col=palette8, cex=0.8)
+legend("topright", data_q8$group, fill = palette8, cex=0.5, inset=c(-0.05,0), xpd = TRUE)
+```
+
+# Compare Responses in Q9
+```{r}
+q9_1 = 0
+q9_2 = 0
+q9_3 = 0
+q9_4 = 0
+q9_5 = 0
+q9_6 = 0
+q9_7 = 0
+q9_8 = 0
+q9_9 = 0
+q9_10 = 0
+q9_11 = 0
+q9_12 = 0
+
+for(i in 1:nrow(dataset_selected)){
+  if(dataset_selected[i,"Q9_1"] == 1) q9_1 = q9_1 + 1
+  else if(dataset_selected[i,"Q9_2"] == 1) q9_2 = q9_2 + 1
+  else if(dataset_selected[i,"Q9_3"] == 1) q9_3 = q9_3 + 1
+  else if(dataset_selected[i,"Q9_4"] == 1) q9_4 = q9_4 + 1
+  else if(dataset_selected[i,"Q9_5"] == 1) q9_5 = q9_5 + 1
+  else if(dataset_selected[i,"Q9_6"] == 1) q9_6 = q9_6 + 1
+  else if(dataset_selected[i,"Q9_7"] == 1) q9_7 = q9_7 + 1
+  else if(dataset_selected[i,"Q9_8"] == 1) q9_8 = q9_8 + 1
+  else if(dataset_selected[i,"Q9_9"] == 1) q9_9 = q9_9 + 1
+  else if(dataset_selected[i,"Q9_10"] == 1) q9_10 = q9_10 + 1
+  else if(dataset_selected[i,"Q9_11"] == 1) q9_11 = q9_11 + 1
+  else if(dataset_selected[i,"Q9_12"] == 1) q9_12 = q9_12 + 1
+}
+
+data_q9 = data.frame(group = c("Reviews by other users", "Name of app", "Number of users who have downloaded the app", "Icon", "Description of the app", "Features", "Number of users who have rated the app", "Price", "Star rating", "Size of app", "Screen shots", "Who developed the app"), value = c(q9_1, q9_2, q9_3, q9_4, q9_5, q9_6, q9_7, q9_8, q9_9, q9_10, q9_11, q9_12))
+percentlabels9<- round(100*data_q9$value/sum(data_q9$value), 1)
+pielabels9<- paste(percentlabels9, "%", sep="")
+par(mar=c(0,0,2,2))
+palette9 <- rainbow(15)
+pie(data_q9$value, main="What do you consider when choosing apps to download?", labels=pielabels9, col=palette9, cex=0.8)
+legend("topright", data_q9$group, fill = palette9, cex= 0.6, inset=c(-0.05,0), xpd = TRUE)
+```
+
+# Compare Responses in Q10
+```{r}
+q10_1 = 0
+q10_2 = 0
+q10_3 = 0
+q10_4 = 0
+q10_5 = 0
+q10_6 = 0
+q10_7 = 0
+q10_8 = 0
+q10_9 = 0
+q10_10 = 0
+q10_11 = 0
+q10_12 = 0
+q10_13 = 0
+q10_14 = 0
+
+for(i in 1:nrow(dataset_selected)){
+  if(dataset_selected[i,"Q10_1"] == 1) q10_1 = q10_1 + 1
+  else if(dataset_selected[i,"Q10_2"] == 1) q10_2 = q10_2 + 1
+  else if(dataset_selected[i,"Q10_3"] == 1) q10_3 = q10_3 + 1
+  else if(dataset_selected[i,"Q10_4"] == 1) q10_4 = q10_4 + 1
+  else if(dataset_selected[i,"Q10_5"] == 1) q10_5 = q10_5 + 1
+  else if(dataset_selected[i,"Q10_6"] == 1) q10_6 = q10_6 + 1
+  else if(dataset_selected[i,"Q10_7"] == 1) q10_7 = q10_7 + 1
+  else if(dataset_selected[i,"Q10_8"] == 1) q10_8 = q10_8 + 1
+  else if(dataset_selected[i,"Q10_9"] == 1) q10_9 = q10_9 + 1
+  else if(dataset_selected[i,"Q10_10"] == 1) q10_10 = q10_10 + 1
+  else if(dataset_selected[i,"Q10_11"] == 1) q10_11 = q10_11 + 1
+  else if(dataset_selected[i,"Q10_12"] == 1) q10_12 = q10_12 + 1
+  else if(dataset_selected[i,"Q10_13"] == 1) q10_13 = q10_13 + 1
+  else if(dataset_selected[i,"Q10_14"] == 1) q10_14 = q10_14 + 1
+}
+
+data_q10 = data.frame(group = c("To interact with friends and/or family.", "To interact with people I don't know.", "To help me carry out a task.", "It is featured in the app store.", "It is on the top downloads chart.", "It is advertised in the apps that I am using.", "For entertainment.", "Out of curiosity.", "An impulsive purchase.", "It features brands or celebrities that I like.", "It was mentioned in the media.", "It is an extension of the website that I use.", "It is recommended by friends and/or family.", "For someone else"), value = c(q10_1, q10_2, q10_3, q10_4, q10_5, q10_6, q10_7, q10_8, q10_9, q10_10, q10_11, q10_12, q10_13, q10_14))
+percentlabels10<- round(100*data_q10$value/sum(data_q10$value), 1)
+pielabels10<- paste(percentlabels10, "%", sep="")
+par(mar=c(2,0,2,2))
+palette10 <- rainbow(15)
+pie(data_q10$value, main="Why do you download an app?", labels=pielabels10, col=palette10, cex=0.8)
+legend("topright", data_q10$group, fill = palette10, cex=0.55, inset=c(-0.05,0), xpd = TRUE)
+```
+
+# Compare Responses in Q11
+```{r}
+q11_1 = 0
+q11_2 = 0
+q11_3 = 0
+q11_4 = 0
+q11_5 = 0
+q11_6 = 0
+q11_11 = 0
+q11_12 = 0
+q11_7 = 0
+q11_8 = 0
+q11_9 = 0
+
+for(i in 1:nrow(dataset_selected)){
+  if(dataset_selected[i,"Q11_1"] == 1) q11_1 = q11_1 + 1
+  else if(dataset_selected[i,"Q11_2"] == 1) q11_2 = q11_2 + 1
+  else if(dataset_selected[i,"Q11_3"] == 1) q11_3 = q11_3 + 1
+  else if(dataset_selected[i,"Q11_4"] == 1) q11_4 = q11_4 + 1
+  else if(dataset_selected[i,"Q11_5"] == 1) q11_5 = q11_5 + 1
+  else if(dataset_selected[i,"Q11_6"] == 1) q11_6 = q11_6 + 1
+  else if(dataset_selected[i,"Q11_7"] == 1) q11_7 = q11_7 + 1
+  else if(dataset_selected[i,"Q11_8"] == 1) q11_8 = q11_8 + 1
+  else if(dataset_selected[i,"Q11_9"] == 1) q11_9 = q11_9 + 1
+  else if(dataset_selected[i,"Q11_11"] == 1) q11_11 = q11_11 + 1
+  else if(dataset_selected[i,"Q11_12"] == 1) q11_12 = q11_12 + 1
+}
+
+data_q11 = data.frame(group = c("I do not pay for apps.", "To remove advertisements from the app.", "The paid app is on sale for a reduced price.", "To subscribe to free content.", "The app is initially free but I have to pay for features that I want.", "I can’t find a free app with similar features.", "To get additional features or content for a paid app.", "To subscribe to paid content.", "The paid app appears to be of better quality.", "I think paid apps have better quality than free apps in general.", "I think paid apps have more features than free apps in general."), value = c(q11_1, q11_2, q11_3, q11_4, q11_5, q11_6, q11_7, q11_8, q11_9, q11_11, q11_12))
+percentlabels11<- round(100*data_q11$value/sum(data_q11$value), 1)
+pielabels11<- paste(percentlabels11, "%", sep="")
+par(mar=c(2,0,2,2))
+palette11 <- rainbow(15)
+pie(data_q11$value, main="Why do you spend money on an app?", labels=pielabels11, col=palette11, cex=0.8)
+legend("topright", data_q11$group, fill = palette11, cex=0.6, inset=c(-0.05,0), xpd = TRUE)
+```
+
+# Compare Responses in Q14
+```{r}
+q14_1 = 0
+q14_2 = 0
+q14_3 = 0
+q14_4 = 0
+q14_5 = 0
+q14_6 = 0
+q14_7 = 0
+q14_8 = 0
+q14_9 = 0
+q14_10 = 0
+q14_11 = 0
+q14_12 = 0
+q14_13 = 0
+q14_15 = 0
+
+for(i in 1:nrow(dataset_selected)){
+  if(dataset_selected[i,"Q14_1"] == 1) q14_1 = q14_1 + 1
+  else if(dataset_selected[i,"Q14_2"] == 1) q14_2 = q14_2 + 1
+  else if(dataset_selected[i,"Q14_3"] == 1) q14_3 = q14_3 + 1
+  else if(dataset_selected[i,"Q14_4"] == 1) q14_4 = q14_4 + 1
+  else if(dataset_selected[i,"Q14_5"] == 1) q14_5 = q14_5 + 1
+  else if(dataset_selected[i,"Q14_6"] == 1) q14_6 = q14_6 + 1
+  else if(dataset_selected[i,"Q14_7"] == 1) q14_7 = q14_7 + 1
+  else if(dataset_selected[i,"Q14_8"] == 1) q14_8 = q14_8 + 1
+  else if(dataset_selected[i,"Q14_9"] == 1) q14_9 = q14_9 + 1
+  else if(dataset_selected[i,"Q14_10"] == 1) q14_10 = q14_10 + 1
+  else if(dataset_selected[i,"Q14_11"] == 1) q14_11 = q14_11 + 1
+  else if(dataset_selected[i,"Q14_12"] == 1) q14_12 = q14_12 + 1
+  else if(dataset_selected[i,"Q14_13"] == 1) q14_13 = q14_13 + 1
+  else if(dataset_selected[i,"Q14_15"] == 1) q14_15 = q14_15 + 1
+}
+
+data_q14 = data.frame(group = c("It crashes.", "I found better alternatives.", "The advertisements are annoying.", "It is difficult to use.", "It is no longer used by my friends and/or family.", "I need to pay extra for the features I need.", "I forgot about the app.", "I do not need the features it provides.", "It invades my privacy.", "It is too slow.", "I got bored of it.", "It does not work.", "It does not have the features I hoped for.", "I don't need it anymore."), value = c(q14_1, q14_2, q14_3, q14_4, q14_5, q14_6, q14_7, q14_8, q14_9, q14_10, q14_11, q14_12, q14_13, q14_15))
+percentlabels14<- round(100*data_q14$value/sum(data_q14$value), 1)
+pielabels14<- paste(percentlabels14, "%", sep="")
+par(mar=c(2,0,2,2))
+palette14 <- rainbow(15)
+pie(data_q14$value, main="What makes you stop using an app?", labels=pielabels14, col=palette14, cex=0.8)
+legend("topright", data_q14$group, fill = palette14, cex=0.6, inset=c(-0.05,0), xpd = TRUE)
+```
+
